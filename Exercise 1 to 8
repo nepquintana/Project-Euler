@@ -1,0 +1,162 @@
+#Problem 1
+
+total <- 0
+i <- 1
+
+while(i < 1000) {
+    if(i %% 3 == 0 | i %% 5 == 0) {
+        total = total + i
+    }
+    i = i + 1
+}
+#233168
+
+#Problem 2
+fib <- c(1,2,3)
+i <- 3
+total <- 2
+
+while(fib[i] <= 4000000) {
+    if (fib[i] %% 2 == 0) {
+        total <- total + fib[i]
+    }
+    i = i + 1
+    fib <- c(fib,fib[i-2]+fib[i-1])
+}
+#4613732
+
+#Problem 3
+install.packages("gmp")
+library(gmp)
+
+max(factorize(600851475143))
+
+x <- 600851475143
+max_prime_factor <- 0
+is.prime <- function(x) {
+    if(x == 2)
+    {TRUE}
+    else if(any(x %% 2:ceiling(sqrt(x)) == 0)) 
+    {FALSE}
+    else
+    {TRUE}
+}
+if(is.prime(x)) {max_prime_factor <- x}
+for(i in 2:ceiling(sqrt(x))) {
+    if(x %% i == 0 & is.prime(i)) {max_prime_factor <- i} 
+}
+#6857
+
+
+install.packages("stringi")
+library(stringi)
+as.numeric(stri_reverse(as.character(12345)))
+
+#Problem 4
+max_palindrome <- 0
+max_i <- 0
+max_j <- 0
+
+for(i in 100:999) {
+    for(j in 100:999) {
+        product <- i * j
+        if(product == as.numeric(stri_reverse(as.character(i * j)))) {
+            if(product > max_palindrome) {
+            max_palindrome <- product
+            max_i <- i
+            max_j <- j
+            }
+        }
+    }
+}
+#906609
+
+#Problem 5
+number <- 1
+while((number %% 1 == 0 &
+      number %% 2 == 0 &
+      number %% 3 == 0 &
+      number %% 4 == 0 &
+      number %% 5 == 0 &
+      number %% 6 == 0 &
+      number %% 7 == 0 &
+      number %% 8 == 0 &
+      number %% 9 == 0 &
+      number %% 10 == 0 &
+      number %% 11 == 0 &
+      number %% 12 == 0 &
+      number %% 13 == 0 &
+      number %% 14 == 0 &
+      number %% 15 == 0 &
+      number %% 16 == 0 &
+      number %% 17 == 0 &
+      number %% 18 == 0 &
+      number %% 19 == 0 &
+      number %% 20 == 0) == FALSE) {
+    number <- number + 1
+}
+#232792560
+
+#Problem 6
+sum_of_squares <- function(X) {
+}
+
+i <- 1
+sum_of_squares <- 0
+while(i < 101) {
+    sum_of_squares <- sum_of_squares + i^2
+    i <- i + 1
+}
+#338350
+
+j <- 1
+sq_sum <- function(x) {
+    ((x*(x+1))/2)^2
+}
+sq_sum(100)
+
+diff <- sq_sum(100) - sum_of_squares
+#25164150
+
+#Problem 7
+is.prime <- function(x) {
+    if(x == 2)
+    {TRUE}
+    else if(any(x %% 2:ceiling(sqrt(x)) == 0)) 
+    {FALSE}
+    else
+    {TRUE}
+}
+is.prime(2)
+
+num <- 2
+primenos <- c()
+length(primenos)
+while(length(primenos) < 10001) {
+    if(is.prime(num)) {
+        primenos <- c(primenos, num)
+    }
+    num <- num + 1
+}
+primenos[10001]
+#104743
+
+#problem 8
+digit <- c("7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450")
+
+digits <- as.numeric(strsplit(digit, "")[[1]])
+i <- 1
+curr_prod <- 1
+max_product <- 0
+while(i < 989) {
+    for(j in i:(i+12)) {
+    curr_prod <- curr_prod * digits[j]
+    }
+if(curr_prod > max_product) {
+    max_product <- curr_prod
+}
+i <- i + 1
+curr_prod <- 1
+}
+print(max_product)
+#23514624000
